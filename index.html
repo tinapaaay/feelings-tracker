@@ -1,0 +1,362 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Little feelings</title><link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%2216%22%20r%3D%225.2%22%20fill%3D%22%23f4d447%22/%3E%3Ccircle%20cx%3D%2216.0%22%20cy%3D%225.7%22%20r%3D%225.2%22%20fill%3D%22%23ef7b13%22/%3E%3Ccircle%20cx%3D%2224.9%22%20cy%3D%2210.9%22%20r%3D%225.2%22%20fill%3D%22%23b98bd1%22/%3E%3Ccircle%20cx%3D%2224.9%22%20cy%3D%2221.1%22%20r%3D%225.2%22%20fill%3D%22%23eb7aaa%22/%3E%3Ccircle%20cx%3D%2216.0%22%20cy%3D%2226.3%22%20r%3D%225.2%22%20fill%3D%22%23ee2627%22/%3E%3Ccircle%20cx%3D%227.1%22%20cy%3D%2221.1%22%20r%3D%225.2%22%20fill%3D%22%2339783a%22/%3E%3Ccircle%20cx%3D%227.1%22%20cy%3D%2210.8%22%20r%3D%225.2%22%20fill%3D%22%23292582%22/%3E%3C/svg%3E">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Outfit:wght@400;500;600;700&display=swap');
+:root{--bg:#fffde7;--ink:#28262d;--accent:#efcd36}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:'DM Sans',sans-serif;transition:background .6s}button,textarea{font:inherit}button{cursor:pointer}button:focus-visible,textarea:focus-visible{outline:3px solid #6950b8;outline-offset:5px}::selection{background:#dac6f7;color:#28262d}header{height:100px;display:flex;align-items:center;justify-content:space-between;padding:0 6%;position:relative;z-index:5;pointer-events:none}header>*{pointer-events:auto}.brand{font-family:Outfit,sans-serif;font-size:24px;font-weight:600;letter-spacing:-.02em;display:flex;align-items:center;gap:10px}.brand svg{width:30px;height:30px}main{min-height:650px;height:calc(100svh - 100px);position:relative;overflow:hidden}.copy{position:relative;z-index:3;width:46%;max-width:580px;margin-left:9%;padding-top:clamp(32px,7vh,90px)}h1{font-family:Outfit,sans-serif;font-weight:500;font-size:clamp(44px,5.2vw,76px);letter-spacing:-.035em;line-height:1.06;margin:0 0 22px;max-width:550px}.intro{color:#625b64;font-size:16px;line-height:1.7;max-width:350px}.wheel-controls .counter{font-size:13px;color:#625b64;text-align:center;font-variant-numeric:tabular-nums;background:#ffffffb3;border-radius:12px;padding:3px 0}.memory-tools{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-top:14px;padding-top:12px;border-top:1px solid #28262d14;font-size:13px;color:#625b64}.memory-tools .save{font-size:13px;color:var(--ink)}.primary{background:#28262d;color:white;border:0;border-radius:12px;padding:15px 23px;font-weight:600;display:inline-flex;align-items:center;gap:14px}.primary:hover{background:#45404c}.primary:disabled{opacity:.45;cursor:default}.primary svg{width:18px;height:18px}textarea{display:block;width:min(100%,350px);height:58px;resize:vertical;border:0;border-bottom:1px solid #28262d35;background:transparent;padding:10px 0;outline-offset:5px;color:var(--ink);font-size:14px;caret-color:#7650b5}textarea::placeholder{color:#6b626c}.save-row{display:flex;align-items:center;gap:14px;margin-top:18px}.save{border:0;background:none;padding:8px 0;font-weight:600;text-decoration:underline;text-underline-offset:5px}.save:disabled{opacity:.4;cursor:default}.status{font-size:12px;color:#625b64}.stage{position:fixed;display:flex;align-items:center;right:0;top:0;width:49%;height:100svh;touch-action:pan-x pinch-zoom;user-select:none;overflow:hidden}.portrait{position:absolute;width:clamp(460px,76svh,960px);height:clamp(460px,76svh,960px);border-radius:50%;border:0;padding:0;overflow:hidden;background:#eee;transition:transform .65s cubic-bezier(.22,1,.36,1),opacity .5s,box-shadow .3s;left:0;top:0;box-shadow:none}.portrait.focused{box-shadow:none}@media (min-width:761px){.portrait{width:clamp(420px,64svh,820px);height:clamp(420px,64svh,820px)}}.portrait.hovered,.portrait:focus-visible{--lift:1.07}.portrait:focus-visible{outline:3px dashed #7650b5;outline-offset:9px}.portrait{touch-action:manipulation}.portrait img{position:absolute;max-width:none;pointer-events:none}.portrait .badge{position:absolute;bottom:14px;left:50%;transform:translateX(-50%);background:#28262d;color:#fff;padding:5px 10px;border-radius:20px;font-size:11px}.wheel-controls{position:absolute;right:36px;top:50%;transform:translateY(-50%);display:grid;gap:12px;z-index:4}.arrow{width:42px;height:42px;border-radius:50%;background:#ffffff8c;border:1px solid #28262d30;display:grid;place-items:center}.arrow:hover{background:#fff}.arrow svg{width:18px;height:18px}.hint{position:absolute;bottom:24px;right:7%;font-size:12px;color:#625b64;display:flex;align-items:center;gap:8px}.hint svg{width:15px;height:15px}.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+@media(min-width:1400px){.copy{padding-top:9vh}}@media(max-width:760px){header{height:76px;padding:0 6%}.brand{font-size:19px}main{height:auto;min-height:calc(100svh - 76px);padding-bottom:35px}.copy{padding-top:25px;margin-left:7%;width:86%;max-width:none}h1{font-size:44px;max-width:330px}.intro{font-size:14px;max-width:280px;margin-bottom:380px}.stage{position:absolute;height:340px;width:100%;top:205px;right:0}.portrait{width:220px;height:220px}.wheel-controls{right:18px}.hint{display:none}textarea{width:100%;max-width:none}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;scroll-behavior:auto!important}}
+
+[hidden]{display:none!important}
+body.reflecting{background:var(--reflection-color);color:var(--reflection-ink);transition:none}body.reflecting header{color:var(--reflection-ink)}body.reflecting .primary{background:var(--reflection-ink);color:var(--reflection-color);font-size:16px}body.reflecting .primary:hover{background:var(--reflection-ink);opacity:.88}body.reflecting :is(button,textarea):focus-visible{outline-color:currentColor}body.reflecting .reflection textarea:focus-visible{outline-color:var(--reflection-ink)}body.reflecting main{height:auto;min-height:calc(100svh - 100px);overflow:visible}
+.reflection{position:relative;display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1fr);align-items:center;gap:clamp(24px,5vw,72px);max-width:1180px;margin:0 auto;padding:clamp(8px,2vh,28px) 6% clamp(24px,5vh,56px);min-height:calc(100svh - 100px)}.reflection-content{position:relative;z-index:1;width:100%;max-width:560px}.back-link{border:0;background:transparent;color:inherit;display:flex;align-items:center;gap:8px;padding:10px 0;margin-bottom:clamp(4px,1.5vh,16px);font-size:15px;font-weight:500}.back-link:hover{text-decoration:underline;text-underline-offset:4px}.back-link svg{width:18px;height:18px}.reflection h1{font-size:clamp(34px,min(4.4vw,7.5vh),62px);max-width:650px;margin-bottom:clamp(10px,2vh,20px)}.reflection-lead{font-size:18px;line-height:1.6;margin:0 0 clamp(16px,3.5vh,32px);max-width:470px}.reflection label[for=note]{display:block;font-weight:600;font-size:16px;margin-bottom:10px}.reflection textarea{background:#fffdf7;color:#29232e;border:1.5px solid color-mix(in srgb,var(--reflection-ink) 22%,transparent);border-radius:14px;box-shadow:0 2px 0 #00000014;width:100%;max-width:none;min-height:clamp(110px,20vh,200px);padding:18px;resize:vertical;font-size:16px;line-height:1.6}.attach-label{display:inline-flex;gap:8px;align-items:center;padding:12px 16px;border:1.5px solid currentColor;border-radius:10px;cursor:pointer;margin-top:18px;font-size:15px;font-weight:600;transition:background .2s}.attach-label:hover{background:color-mix(in srgb,currentColor 12%,transparent)}.attach-label svg{width:19px;height:19px}.attach-label:focus-within{outline:3px solid currentColor;outline-offset:4px}.attachment-note{font-size:14px;line-height:1.5;margin:10px 0 0}.attachment-list{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px}.photo-preview{position:relative;width:104px;height:104px;margin:0}.photo-preview img{width:100%;height:100%;object-fit:cover;border-radius:10px}.photo-preview button{position:absolute;right:5px;top:5px;border:0;background:#fff;color:#29232e;border-radius:50%;width:26px;height:26px;font-size:19px;display:grid;place-items:center}.reflection .save-row{margin-top:clamp(16px,3vh,28px);flex-wrap:wrap}.reflection .status{color:inherit;max-width:320px;line-height:1.5}.reflection-character{width:100%;height:min(66svh,600px);object-fit:contain;pointer-events:none}.color-transition{position:fixed;inset:0;z-index:20;pointer-events:none}.saved-message{padding:20px 0}.saved-message p{line-height:1.6}.saved-orb{width:100px;height:100px;border-radius:50%;background:var(--reflection-color);box-shadow:inset -12px -14px 25px #0003,inset 10px 10px 18px #fffa;outline:1px solid currentColor;margin-bottom:28px}
+@media(max-width:760px){.reflection{display:block;padding:12px 7% 60px}.reflection-content{max-width:none;margin-left:0}.reflection-character{display:block;position:absolute;left:5%;top:76px;width:88px;height:130px}.reflection h1{font-size:38px;padding-left:86px;min-height:124px}.reflection-lead{font-size:14px}.reflection textarea{min-height:165px}.reflection .save-row{gap:18px}.saved-message{padding-top:25px}}
+
+.home-memories{max-width:440px;margin-top:40px}.shelves-heading{display:flex;align-items:baseline;justify-content:space-between;gap:15px;margin-bottom:10px}.shelves-heading h2{font:500 21px Outfit,sans-serif;margin:0}.shelves-heading span{font-size:13px;color:#625b64}.home-shelves{max-height:310px;overflow:auto;padding:14px 12px 12px;border-radius:18px;background:radial-gradient(ellipse 90% 60% at 50% 0,#4a2f6e 0,transparent 70%),linear-gradient(#2b1c40,#1c1229);box-shadow:inset 0 0 0 1px #ffffff12,inset 0 0 36px #0009,0 14px 28px -18px #2b1c40;scrollbar-width:thin;scrollbar-color:#6b5590 transparent;overscroll-behavior:contain}.memory-shelf{margin:0 0 20px}.memory-shelf:last-child{margin-bottom:0}.memory-shelf h3{display:flex;justify-content:space-between;font-size:13px;font-weight:600;color:#e7dcf7;margin:0 0 6px;padding:0 4px;letter-spacing:.02em}.memory-shelf h3 span{font-weight:400;color:#b9a8d4}.shelf-rail{display:flex;flex-wrap:wrap;gap:18px 6px;padding:10px 4px 8px;background:repeating-linear-gradient(to bottom,transparent 0 52px,#0c0712 52px 53px,#7a6086 53px 55px,#3e2c48 55px 58px,#1a1121 58px 60px)}.shelf-rail.is-empty{background:none;padding:4px 4px 12px;border-bottom:5px solid #3a2944;box-shadow:inset 0 -1px 0 #6a5276}.memory-ball{--orb-color:#f4d447;position:relative;flex:0 0 42px;width:42px;height:42px;padding:0;border:0;border-radius:50%;background:radial-gradient(circle at 32% 25%,#ffffffd9 0%,#ffffff40 15%,transparent 44%),var(--orb-color);box-shadow:inset -6px -8px 12px #211b2540,inset 3px 3px 6px #ffffff90,0 8px 9px -7px #30233f80;transition:transform .2s,box-shadow .2s}.memory-ball:hover{transform:translateY(-5px);box-shadow:inset -6px -8px 12px #211b2540,inset 3px 3px 6px #ffffff90,0 14px 12px -8px #30233f60}.shelf-empty{font-size:14px;color:#cfc2e4;line-height:1.7;margin:0;padding:8px 0 14px;max-width:290px}.shelf-status{font-size:12px;color:#625b64;margin:8px 0 0}.shelf-status:empty{display:none}
+/* Memory orb viewer: a glowing sphere in the feeling's colour, like the film's memory orbs. */
+.memory-viewer{position:fixed;inset:0;z-index:40;display:grid;place-items:center;padding:16px}
+.memory-backdrop{position:absolute;inset:0;background:#191427bf;backdrop-filter:blur(6px)}
+.close-memory{position:absolute;top:20px;right:20px;z-index:3;width:44px;height:44px;display:grid;place-items:center;border:0;border-radius:50%;background:#ffffffe0;color:#28262d;font-size:26px;line-height:1;padding:0}.close-memory:hover{background:#fff}
+.memory-orb{--memory-color:#b98bd1;--orb-ink:#fff;--orb-halo:#000;position:relative;width:min(560px,88vw,80svh);aspect-ratio:1;border-radius:50%;overflow:hidden;isolation:isolate;display:grid;place-items:center;text-align:center;color:var(--orb-ink);text-shadow:0 1px 12px color-mix(in srgb,var(--orb-halo) 45%,transparent);background:radial-gradient(circle at 50% 42%,color-mix(in srgb,var(--memory-color) 45%,#fff) 0%,var(--memory-color) 58%,color-mix(in srgb,var(--memory-color) 70%,#000) 100%);box-shadow:0 0 0 1px #ffffff30,0 0 70px 6px color-mix(in srgb,var(--memory-color) 60%,transparent),0 30px 60px -20px #0009;animation:orb-glow 4s ease-in-out infinite}
+.memory-orb:after{content:'';position:absolute;inset:0;z-index:2;border-radius:50%;pointer-events:none;background:radial-gradient(ellipse 36% 24% at 32% 19%,#ffffff9e 0%,#ffffff2e 48%,transparent 72%);box-shadow:inset 0 0 44px 10px color-mix(in srgb,var(--memory-color) 70%,#000),inset 0 -20px 44px color-mix(in srgb,var(--memory-color) 55%,#000)}
+@keyframes orb-glow{50%{box-shadow:0 0 0 1px #ffffff30,0 0 105px 18px color-mix(in srgb,var(--memory-color) 72%,transparent),0 30px 60px -20px #0009}}
+.orb-scene{position:absolute;inset:0;z-index:0}.orb-scene img{width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.08);mix-blend-mode:luminosity;opacity:.8}
+.memory-orb.has-scene:before{content:'';position:absolute;inset:0;z-index:1;background:radial-gradient(circle,color-mix(in srgb,var(--memory-color) 82%,transparent) 0 34%,transparent 72%)}
+.orb-content{position:relative;z-index:1;width:70%;max-height:64%;overflow:auto;padding:16px 4px 20px;display:flex;flex-direction:column;align-items:center;gap:6px;scrollbar-width:none;-webkit-mask-image:linear-gradient(transparent,#000 16px,#000 calc(100% - 24px),transparent);mask-image:linear-gradient(transparent,#000 16px,#000 calc(100% - 24px),transparent)}
+.orb-content h3{font:500 clamp(24px,4.4vw,34px)/1.15 Outfit,sans-serif;margin:0;outline:none}
+.orb-content time{font-size:13px;opacity:.85;letter-spacing:.02em}
+.orb-content p{font-size:clamp(15px,2.4vw,18px);line-height:1.55;margin:10px 0 0;white-space:pre-wrap;overflow-wrap:anywhere}
+.orb-thumbs{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:12px}.orb-thumbs:empty{display:none}.orb-thumbs img{width:54px;height:54px;border-radius:50%;object-fit:cover;box-shadow:0 0 0 2px #ffffffb3}
+body.viewing-memory{overflow:hidden}.memory-ball.is-open{opacity:.3}
+.rolling-memory{position:fixed;z-index:30;pointer-events:none;transform-origin:center}.copy:has(.home-memories){padding-bottom:35px}
+@media(max-width:760px){.home-memories{margin-top:26px;max-width:none}.home-shelves{max-height:260px}.intro{margin-bottom:380px}}
+
+.memory-tube{position:fixed;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none;z-index:28}.memory-tube path{fill:none;stroke-linecap:round;stroke-linejoin:round}.tube-inlet{position:fixed;z-index:29;width:78px;height:78px;border:5px solid #dfd4e9;border-radius:50%;background:#65547742;box-shadow:inset 0 6px 12px #30233f35,0 6px 18px #30233f1a;pointer-events:none}.tube-inlet:after{content:'';position:absolute;inset:5px;border:2px solid #ffffffa6;border-radius:50%}.transporting main{pointer-events:none}.transporting .rolling-memory{pointer-events:none}
+
+.memory-tube{filter:none}.rolling-memory{box-shadow:inset -5px -7px 12px #211b252b,inset 3px 3px 6px #ffffffb3,0 0 18px 2px color-mix(in srgb,var(--orb-color) 55%,transparent),0 6px 12px #30233f20}.shelf-rail .memory-ball{background:radial-gradient(circle at 34% 26%,#ffffffc0 0,#ffffff30 12%,transparent 30%),radial-gradient(ellipse 45% 30% at 62% 62%,#ffffff45 0,transparent 70%),radial-gradient(ellipse 35% 45% at 30% 66%,color-mix(in srgb,var(--orb-color) 40%,#fff) 0,transparent 75%),radial-gradient(circle at 50% 50%,color-mix(in srgb,var(--orb-color) 55%,#fff) 0,var(--orb-color) 62%,color-mix(in srgb,var(--orb-color) 70%,#000) 100%);box-shadow:inset 0 0 8px color-mix(in srgb,var(--orb-color) 55%,#000),0 0 14px 2px color-mix(in srgb,var(--orb-color) 65%,transparent),0 0 30px 4px color-mix(in srgb,var(--orb-color) 25%,transparent)}.shelf-rail .memory-ball:hover{transform:translateY(-5px);box-shadow:inset 0 0 8px color-mix(in srgb,var(--orb-color) 55%,#000),0 0 20px 5px color-mix(in srgb,var(--orb-color) 80%,transparent),0 0 40px 8px color-mix(in srgb,var(--orb-color) 35%,transparent)}
+</style></head><body>
+<header><div class="brand"><svg viewBox="0 0 32 32" fill="none" aria-hidden="true"><circle cx="16" cy="16" r="5.2" fill="#f4d447"/><circle cx="16.0" cy="5.7" r="5.2" fill="#ef7b13"/><circle cx="24.9" cy="10.9" r="5.2" fill="#b98bd1"/><circle cx="24.9" cy="21.1" r="5.2" fill="#eb7aaa"/><circle cx="16.0" cy="26.3" r="5.2" fill="#ee2627"/><circle cx="7.1" cy="21.1" r="5.2" fill="#39783a"/><circle cx="7.1" cy="10.8" r="5.2" fill="#292582"/></svg>little feelings</div></header>
+<main><section id="checkin"><div class="copy"><h1>What do you feel right now?</h1><p class="intro">A little check-in, just for you.<br>Tap a character to capture a moment.</p><section class="home-memories" aria-label="Memory shelves"><div class="shelves-heading"><h2>Your memories</h2><span id="memory-count">0 moments</span></div><div id="home-shelves" class="home-shelves"></div><p id="shelf-status" class="shelf-status" role="status"></p><div class="memory-tools"><span>Saved only in this browser.</span><button class="save" id="export">Download my memories</button></div></section></div><div class="stage" id="stage" aria-label="Emotion wheel. Swipe or use up and down arrow keys."><div id="portraits"></div><div class="wheel-controls"><button class="arrow" id="wheel-prev" aria-label="Previous feeling"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m6 15 6-6 6 6"/></svg></button><span class="counter" id="counter" aria-live="polite"></span><button class="arrow" id="wheel-next" aria-label="Next feeling"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button></div><span class="hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3v18m-4-4 4 4 4-4M8 7l4-4 4 4"/></svg>Scroll or swipe to explore</span></div></section><section class="reflection" id="reflection" hidden aria-labelledby="reflection-title"><img class="reflection-character" id="reflection-character" alt=""><div class="reflection-content"><button class="back-link" id="back-wheel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m14 6-6 6 6 6M8 12h13"/></svg>Back to your feelings</button><div id="reflection-form"><h1 id="reflection-title" tabindex="-1">What’s behind your joy?</h1><p class="reflection-lead">What happened? What’s on your mind? Give this feeling a little space.</p><label for="note">Tell your story <span style="font-weight:400">(optional)</span></label><textarea id="note" maxlength="4000" placeholder="I feel this way because…"></textarea><label class="attach-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8" cy="8" r="1.5"/><path d="m3 17 5-5 4 4 4-6 5 7"/></svg>Attach images<input class="sr-only" type="file" id="photos" accept="image/jpeg,image/png,image/webp,image/gif" multiple></label><p class="attachment-note">Up to 4 images, 2 MB combined. Stored in this browser.</p><div class="attachment-list" id="attachments"></div><div class="save-row"><button class="primary" id="save">Save this memory <span aria-hidden="true">→</span></button><span class="status" id="status" role="status"></span></div></div><div class="saved-message" id="saved-message" hidden><div class="saved-orb" aria-hidden="true"></div><h1 tabindex="-1" id="saved-title">A moment, remembered.</h1><p>Your feeling, story, and images are saved in this browser.</p><button class="primary" id="another-moment">Another moment <span aria-hidden="true">→</span></button></div></div></section></main><div class="memory-viewer" id="memory-detail" hidden role="dialog" aria-modal="true" aria-labelledby="memory-detail-title"><div class="memory-backdrop" id="memory-backdrop"></div><button id="close-memory" class="close-memory" aria-label="Close memory">×</button><div class="memory-orb" id="memory-orb"><div class="orb-scene" id="memory-scene"></div><div class="orb-content"><h3 id="memory-detail-title" tabindex="-1"></h3><time id="memory-detail-time"></time><p id="memory-detail-note"></p><div id="memory-detail-images" class="orb-thumbs"></div></div></div></div>
+<script>
+const emotions=[
+{name:'Joy',color:'#f4d447',bg:'#fffde7',circle:[168,64,239],description:'The little things feel a little brighter.'},
+{name:'Anxiety',color:'#ef7b13',bg:'#fff0e3',circle:[57,287,239],description:'A lot of what-ifs, all at once.'},
+{name:'Fear',color:'#b98bd1',bg:'#f4ecfb',circle:[131,523,239],description:'Something feels uncertain. That’s okay.'},
+{name:'Embarrassment',color:'#eb7aaa',bg:'#fff0f5',circle:[387,578,239],description:'A moment you wish you could hide from.'},
+{name:'Anger',color:'#ee2627',bg:'#fff0eb',circle:[634,447,239],description:'Something matters, and it’s not feeling right.'},
+{name:'Disgust',color:'#39783a',bg:'#edf5e7',circle:[659,181,239],description:'That’s a definite “no” from you.'},
+{name:'Ennui',color:'#292582',bg:'#efedfb',circle:[440,39,239],description:'A little bored. A little over it.'}
+];
+const $=id=>document.getElementById(id);let index=0,embossedIndex=null,openMemoryId=null,memoryToken=0,memories=[],rollingMemoryId=null,savingMemory=false;try{memories=JSON.parse(localStorage.getItem('little-feelings-memories')||'[]');if(!Array.isArray(memories))memories=[]}catch{};
+const buttons=emotions.map((e,i)=>{const b=document.createElement('button');b.className='portrait';b.setAttribute('aria-label',`Focus ${e.name}`);b.setAttribute('aria-pressed','false');const im=document.createElement('img');const files={"Joy": "joy.webp", "Anxiety": "anxiety.webp", "Fear": "fear.png", "Embarrassment": "Embarrassment_Transparent.webp", "Anger": "anger.png", "Disgust": "disgust-1200.png", "Ennui": "Ennui_29.webp"};im.src='assets/'+files[e.name];im.alt=e.name;b.style.background=['#fffdb1','#ed790a','#d9bfe4','#ed7bad','#ee2526','#306c32','#201e7d'][i];im.style.cssText='width:76%;height:82%;left:12%;top:9%;object-fit:contain';b.append(im);b.onclick=()=>chooseCharacter(i);$('portraits').append(b);return b});
+function layout(){const s=$('stage'),mobile=innerWidth<=760,size=buttons[0].offsetWidth,w=s.clientWidth,h=s.clientHeight;buttons.forEach((b,i)=>{let delta=(i-index+emotions.length)%emotions.length;if(delta>emotions.length/2)delta-=emotions.length;const angle=delta*(mobile?.72:.8),r=mobile?330:size*1.08;const x=w*.5-size/2+r*(1-Math.cos(angle)),y=h*.5-size/2+r*Math.sin(angle);b.style.transform=`translate(${x}px,${y}px) scale(${delta===0?1:.66}) scale(var(--lift,1))`;b.style.opacity=Math.abs(delta)>1?0:delta===0?1:1;b.style.pointerEvents=Math.abs(delta)>1?'none':'auto';b.tabIndex=Math.abs(delta)>1?-1:0;b.classList.toggle('focused',delta===0);b.style.zIndex=delta===0?2:1})}
+// Browsers only re-check :hover when the mouse moves, so a circle that slides under a
+// still cursor would never grow. Track the cursor and re-check while the wheel animates.
+let mouse=null,hoverFrame=0;
+function syncHover(){const el=mouse&&document.elementFromPoint(mouse.x,mouse.y)?.closest('.portrait');buttons.forEach(b=>b.classList.toggle('hovered',b===el))}
+function watchHover(){const end=performance.now()+700;cancelAnimationFrame(hoverFrame);const tick=()=>{syncHover();if(performance.now()<end)hoverFrame=requestAnimationFrame(tick)};tick()}
+document.addEventListener('pointermove',e=>{if(e.pointerType!=='mouse')return;mouse={x:e.clientX,y:e.clientY};syncHover()});
+document.addEventListener('mouseout',e=>{if(!e.relatedTarget){mouse=null;syncHover()}});
+buttons.forEach(b=>b.addEventListener('transitionend',e=>{if(e.propertyName==='transform')syncHover()}));
+function render(){
+  const e=emotions[index];
+  document.documentElement.style.setProperty('--bg',e.bg);
+  document.documentElement.style.setProperty('--accent',e.color);
+  drawHomeShelves();
+  buttons.forEach((b,i)=>b.setAttribute('aria-pressed',String(i===embossedIndex)));
+  $('counter').textContent=`${index+1} / ${emotions.length}`;
+  
+  layout();
+  watchHover();
+}
+function move(n){
+  index=(index+n+emotions.length)%emotions.length;
+  embossedIndex=index;
+  
+  render();
+}
+// Filter trackpad momentum without delaying a new swipe.
+let wheelTotal=0,wheelDirection=0,wheelConsumed=false,wheelIdleTimer;
+let previousMagnitude=0,lastWheelEvent=-Infinity,lastWheelStep=-Infinity;
+const stage=$('stage');
+stage.addEventListener('wheel',e=>{
+  if(openingReflection||savingMemory||$('checkin').hidden)return;
+  if(e.ctrlKey||Math.abs(e.deltaX)>Math.abs(e.deltaY)||!e.deltaY)return;
+  e.preventDefault();
+  mouse={x:e.clientX,y:e.clientY};
+  const now=performance.now(),direction=Math.sign(e.deltaY);
+  const pixels=e.deltaY*(e.deltaMode===1?16:e.deltaMode===2?stage.clientHeight:1);
+  const magnitude=Math.abs(pixels);
+  // A new direction, a brief break, or a fresh acceleration starts a new swipe.
+  // Animation is interruptible; it never blocks the next gesture.
+  const freshImpulse=wheelConsumed&&now-lastWheelStep>100&&magnitude>=18&&magnitude>Math.max(previousMagnitude,6)*1.8;
+  if(now-lastWheelEvent>100||direction!==wheelDirection||freshImpulse){
+    wheelTotal=0;wheelConsumed=false;
+  }
+  wheelDirection=direction;previousMagnitude=magnitude;lastWheelEvent=now;
+  clearTimeout(wheelIdleTimer);
+  wheelIdleTimer=setTimeout(()=>{wheelTotal=0;wheelConsumed=false;previousMagnitude=0},100);
+  if(wheelConsumed)return;
+  wheelTotal+=pixels;
+  if(Math.abs(wheelTotal)<30)return;
+  wheelConsumed=true;lastWheelStep=now;
+  move(direction);
+},{passive:false});
+let swipe=null,suppressClickUntil=0;
+stage.addEventListener('pointerdown',e=>{
+  if(openingReflection||$('checkin').hidden||!e.isPrimary||e.button!==0||e.target.closest('.wheel-controls'))return;
+  swipe={id:e.pointerId,x:e.clientX,y:e.clientY,dragging:false};
+});
+stage.addEventListener('pointermove',e=>{
+  if(!swipe||e.pointerId!==swipe.id)return;
+  const dy=e.clientY-swipe.y,dx=e.clientX-swipe.x;
+  if(Math.abs(dy)>12&&Math.abs(dy)>Math.abs(dx)){
+    swipe.dragging=true;
+    if(!stage.hasPointerCapture(e.pointerId))stage.setPointerCapture(e.pointerId);
+  }
+});
+stage.addEventListener('pointerup',e=>{
+  if(!swipe||e.pointerId!==swipe.id)return;
+  const dy=e.clientY-swipe.y,dx=e.clientX-swipe.x;
+  if(swipe.dragging){
+    suppressClickUntil=performance.now()+400;
+    if(Math.abs(dy)>35&&Math.abs(dy)>Math.abs(dx))move(dy<0?1:-1);
+  }
+  swipe=null;
+});
+stage.addEventListener('pointercancel',()=>{swipe=null});
+stage.addEventListener('lostpointercapture',()=>{swipe=null});
+stage.addEventListener('click',e=>{
+  if(performance.now()<suppressClickUntil){e.preventDefault();e.stopImmediatePropagation()}
+},true);
+document.addEventListener('keydown',e=>{if(savingMemory||e.target.matches('textarea,input')||$('checkin').hidden||!$('memory-detail').hidden)return;if(e.key==='ArrowDown'||e.key==='ArrowUp'){e.preventDefault();move(e.key==='ArrowDown'?1:-1)}});window.addEventListener('resize',layout);
+render();
+
+let openingReflection=false,draftPhotos=[],readingPhotos=false;
+const drafts=new Map();
+function chooseCharacter(i){
+  if(savingMemory)return;
+  embossedIndex=i;
+  if(index===i){openReflection();return}
+  index=i;render();
+}
+// Soft light text: mostly white, tinted with the colour it sits on.
+function softInk(hex){const ink=contrastInk(hex);return ink==='#ffffff'?`color-mix(in srgb,#fff 82%,${hex})`:ink}
+function contrastInk(hex){const rgb=hex.match(/[a-f\d]{2}/gi).map(x=>parseInt(x,16)/255).map(v=>v<=.04045?v/12.92:((v+.055)/1.055)**2.4);return .2126*rgb[0]+.7152*rgb[1]+.0722*rgb[2]>.179?'#211b25':'#ffffff'}
+function rememberDraft(){if(!$('reflection').hidden&&!$('reflection-form').hidden)drafts.set(index,{note:$('note').value,photos:[...draftPhotos]})}
+function showReflection(){
+  const color=buttons[index].style.backgroundColor;
+  document.documentElement.style.setProperty('--reflection-color',color);
+  const rgb=color.match(/\d+/g).slice(0,3).map(Number);const hex='#'+rgb.map(n=>n.toString(16).padStart(2,'0')).join('');
+  document.documentElement.style.setProperty('--reflection-ink',softInk(hex));
+  document.body.classList.add('reflecting');$('checkin').hidden=true;$('reflection').hidden=false;
+  $('reflection-form').hidden=false;$('saved-message').hidden=true;
+  $('reflection-title').textContent='What’s behind your '+emotions[index].name.toLowerCase()+'?';
+  $('reflection-character').src=buttons[index].querySelector('img').src;
+  const draft=drafts.get(index);$('note').value=draft?.note||'';draftPhotos=[...(draft?.photos||[])];renderPhotos();$('status').textContent='';window.scrollTo(0,0);
+}
+async function openReflection(){
+  if(openingReflection||!$('reflection').hidden)return;openingReflection=true;
+  const portrait=buttons[index],sourceImage=portrait.querySelector('img');
+  const rect=portrait.getBoundingClientRect(),source=sourceImage.getBoundingClientRect();
+  const color=portrait.style.backgroundColor,x=rect.left+rect.width/2,y=rect.top+rect.height/2;
+  const route='#reflect/'+emotions[index].name.toLowerCase();
+  history.pushState(null,'',route);
+  const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let cover,traveler,target;
+  try{
+    if(!reduced){
+      cover=document.createElement('div');cover.className='color-transition';cover.style.background=color;
+      traveler=sourceImage.cloneNode();traveler.alt='';traveler.setAttribute('aria-hidden','true');
+      traveler.style.cssText=`position:fixed;z-index:21;pointer-events:none;object-fit:contain;left:${source.left}px;top:${source.top}px;width:${source.width}px;height:${source.height}px;transform-origin:center`;
+      document.body.append(cover,traveler);
+      // Measure the destination off-flow without revealing the next page yet.
+      const page=$('reflection');target=$('reflection-character');
+      const previousStyle=page.getAttribute('style');
+      page.hidden=false;
+      page.style.cssText=`position:fixed;inset:${document.querySelector('header').getBoundingClientRect().height}px 0 auto 0;visibility:hidden;pointer-events:none`;
+      const destination=target.getBoundingClientRect();
+      page.hidden=true;
+      if(previousStyle===null)page.removeAttribute('style');else page.setAttribute('style',previousStyle);
+      const frame=(left,top,width,height,rotate)=>({left:`${left}px`,top:`${top}px`,width:`${width}px`,height:`${height}px`,transform:`rotate(${rotate}deg)`});
+      const timing={duration:700,easing:'cubic-bezier(.22,1,.36,1)',fill:'forwards'};
+      const expansion=cover.animate([
+        {clipPath:`circle(${rect.width/2}px at ${x}px ${y}px)`},
+        {clipPath:`circle(${Math.hypot(innerWidth,innerHeight)*1.5}px at ${x}px ${y}px)`}
+      ],timing);
+      const slide=traveler.animate([
+        {...frame(source.left,source.top,source.width,source.height,0),offset:0},
+        {...frame(destination.left-20,destination.top-7,destination.width,destination.height,-3),offset:.8},
+        {...frame(destination.left,destination.top,destination.width,destination.height,0),offset:1}
+      ],timing);
+      // Both animations share their start time, including on slower devices.
+      const startTime=document.timeline.currentTime;
+      if(startTime!==null){expansion.startTime=startTime;slide.startTime=startTime}
+      await Promise.all([expansion.finished,slide.finished]);
+      if(location.hash!==route)return;
+      showReflection();target.style.visibility='hidden';
+      await cover.animate([{opacity:1},{opacity:0}],{duration:180,fill:'forwards'}).finished;
+    }else showReflection();
+    if(location.hash===route)$('reflection-title').focus({preventScroll:true});
+  }catch(error){
+    // An interrupted animation must never strand the user under its overlay.
+    if(location.hash===route){showReflection();$('reflection-title').focus({preventScroll:true})}
+  }finally{
+    if(target)target.style.visibility='';traveler?.remove();cover?.remove();openingReflection=false;
+  }
+}
+function backToWheel(){if(readingPhotos)return;rememberDraft();history.pushState(null,'',location.pathname+location.search);syncRoute()}
+function syncRoute(){
+  const match=location.hash.match(/^#reflect\/(.+)$/),target=match?emotions.findIndex(e=>e.name.toLowerCase()===match[1]):-1;
+  if(target>=0){index=target;showReflection();return}
+  document.body.classList.remove('reflecting');$('reflection').hidden=true;$('checkin').hidden=false;render();requestAnimationFrame(()=>buttons[index].focus({preventScroll:true}));
+}
+$('back-wheel').onclick=backToWheel;
+// Memories live only in localStorage, so offer a backup file (images included).
+$('export').onclick=()=>{const url=URL.createObjectURL(new Blob([JSON.stringify(memories,null,2)],{type:'application/json'}));const a=document.createElement('a');a.href=url;a.download=`little-feelings-${new Date().toISOString().slice(0,10)}.json`;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000)};
+$('wheel-prev').onclick=()=>move(-1);$('wheel-next').onclick=()=>move(1);$('another-moment').onclick=backToWheel;
+addEventListener('popstate',()=>{rememberDraft();syncRoute()});
+function renderPhotos(){
+  $('attachments').replaceChildren();
+  draftPhotos.forEach((photo,i)=>{const figure=document.createElement('figure');figure.className='photo-preview';const img=document.createElement('img');img.src=photo.data;img.alt=photo.name;const remove=document.createElement('button');remove.type='button';remove.textContent='×';remove.setAttribute('aria-label','Remove '+photo.name);remove.onclick=()=>{draftPhotos.splice(i,1);renderPhotos()};figure.append(img,remove);$('attachments').append(figure)});
+}
+$('photos').addEventListener('change',async event=>{
+  const files=[...event.target.files];event.target.value='';if(!files.length||readingPhotos)return;
+  const types=['image/jpeg','image/png','image/webp','image/gif'];
+  if(files.some(f=>!types.includes(f.type))){$('status').textContent='Choose JPG, PNG, WebP, or GIF images.';return}
+  if(draftPhotos.length+files.length>4||draftPhotos.reduce((n,p)=>n+p.size,0)+files.reduce((n,f)=>n+f.size,0)>2*1024*1024){$('status').textContent='Choose up to 4 images with a combined size under 2 MB.';return}
+  readingPhotos=true;$('save').disabled=true;$('photos').disabled=true;$('back-wheel').disabled=true;$('status').textContent='Adding images…';
+  try{const loaded=await Promise.all(files.map(file=>new Promise((resolve,reject)=>{const reader=new FileReader();reader.onload=()=>resolve({name:file.name,size:file.size,data:reader.result});reader.onerror=reject;reader.readAsDataURL(file)})));draftPhotos.push(...loaded);renderPhotos();$('status').textContent='Images added.'}catch{$('status').textContent='Could not read those images. Please try again.'}finally{readingPhotos=false;$('save').disabled=false;$('photos').disabled=false;$('back-wheel').disabled=false}
+});
+$('save').onclick=async()=>{
+  if(readingPhotos||savingMemory)return;
+  savingMemory=true;$('save').disabled=true;
+  const entry={id:Date.now(),date:new Date().toISOString(),feelings:[emotions[index].name],note:$('note').value.trim(),images:[...draftPhotos]};
+  const next=[entry,...memories];
+  try{localStorage.setItem('little-feelings-memories',JSON.stringify(next))}catch{$('status').textContent='Browser storage is full or unavailable. Remove an image and try again. Your draft is still here.';savingMemory=false;$('save').disabled=false;return}
+  memories=next;drafts.delete(index);
+  try{await rollMemoryToShelf(entry)}finally{draftPhotos=[];$('note').value='';renderPhotos();savingMemory=false;$('save').disabled=false}
+};
+if(location.hash.startsWith('#reflect/'))syncRoute();
+
+
+function memoryColor(memory){return emotions.find(e=>e.name===memory.feelings[0])?.color||'#b98bd1'}
+function drawHomeShelves(){
+$('export').disabled=!memories.length;
+  const root=$('home-shelves');if(!root)return;root.replaceChildren();
+  $('memory-count').textContent=memories.length+' '+(memories.length===1?'moment':'moments');
+  const groups=new Map();
+  const dayLabel=d=>{const day=new Date(d);day.setHours(0,0,0,0);const today=new Date();today.setHours(0,0,0,0);const diff=Math.round((today-day)/864e5);return diff===0?'Today':diff===1?'Yesterday':day.toLocaleDateString(undefined,{month:'short',day:'numeric',year:day.getFullYear()===today.getFullYear()?undefined:'numeric'})};
+  for(const memory of memories){const date=dayLabel(memory.date);if(!groups.has(date))groups.set(date,[]);groups.get(date).push(memory)}
+  if(!groups.size)groups.set('Your first shelf',[]);
+  for(const [date,items] of groups){
+    const shelf=document.createElement('section');shelf.className='memory-shelf';const label=document.createElement('h3');label.textContent=date;
+    if(items.length){const n=document.createElement('span');n.textContent=items.length;label.append(n)}
+    const rail=document.createElement('div');rail.className='shelf-rail'+(items.length?'':' is-empty');
+    if(!items.length){const empty=document.createElement('p');empty.className='shelf-empty';empty.textContent='A little space for what you’re feeling. Your saved memories will roll in here.';rail.append(empty)}
+    for(const memory of [...items].reverse()){const ball=document.createElement('button');ball.className='memory-ball';ball.id='memory-'+memory.id;ball.style.setProperty('--orb-color',memoryColor(memory));ball.setAttribute('aria-label','Open '+memory.feelings.join(' and ')+' memory, '+new Date(memory.date).toLocaleString());ball.title=memory.feelings.join(' + ')+(memory.note?' · '+memory.note.slice(0,60):'');if(memory.id===rollingMemoryId)ball.style.visibility='hidden';if(memory.id===openMemoryId)ball.classList.add('is-open');ball.onclick=()=>openMemoryId===memory.id?closeHomeMemory():openHomeMemory(memory,ball);rail.append(ball)}
+    shelf.append(label,rail);root.append(shelf);
+  }
+}
+// The tapped ball flies out and grows into a big memory orb; closing sends it back.
+function orbFrom(orb,ball){const o=orb.getBoundingClientRect(),b=ball.getBoundingClientRect();return `translate(${b.left+b.width/2-(o.left+o.width/2)}px,${b.top+b.height/2-(o.top+o.height/2)}px) scale(${b.width/o.width})`}
+function openHomeMemory(memory,ball){
+  const viewer=$('memory-detail'),orb=$('memory-orb'),reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  memoryToken++;openMemoryId=memory.id;
+  document.querySelectorAll('.memory-ball.is-open').forEach(b=>b.classList.remove('is-open'));
+  const color=memoryColor(memory),ink=contrastInk(color);
+  orb.style.setProperty('--memory-color',color);orb.style.setProperty('--orb-ink',softInk(color));orb.style.setProperty('--orb-halo',ink==='#ffffff'?'#000':'#fff');
+  $('memory-detail-title').textContent=memory.feelings.join(' + ');
+  $('memory-detail-time').textContent=new Date(memory.date).toLocaleString(undefined,{weekday:'short',month:'short',day:'numeric',hour:'numeric',minute:'2-digit'});$('memory-detail-time').dateTime=memory.date;
+  $('memory-detail-note').textContent=memory.note||'A moment, remembered.';
+  // The first photo becomes the scene inside the orb; extra photos show as small bubbles.
+  const photos=memory.images||[];$('memory-scene').replaceChildren();$('memory-detail-images').replaceChildren();
+  if(photos[0]){const scene=document.createElement('img');scene.src=photos[0].data;scene.alt=photos[0].name;$('memory-scene').append(scene)}
+  orb.classList.toggle('has-scene',!!photos[0]);
+  if(photos.length>1)for(const photo of photos){const image=document.createElement('img');image.src=photo.data;image.alt=photo.name;$('memory-detail-images').append(image)}
+  $('close-memory').onclick=closeHomeMemory;$('memory-backdrop').onclick=closeHomeMemory;
+  viewer.getAnimations({subtree:true}).forEach(a=>{if(a.animationName!=='orb-glow')a.cancel()});
+  viewer.hidden=false;document.body.classList.add('viewing-memory');ball?.classList.add('is-open');
+  if(!reduced){
+    ball?.animate([{scale:'1'},{scale:'.82 .9',offset:.3},{scale:'1.1',offset:.6},{scale:'1'}],{duration:380,easing:'ease-out'});
+    $('memory-backdrop').animate([{opacity:0},{opacity:1}],{duration:320,easing:'ease-out'});
+    $('close-memory').animate([{opacity:0},{opacity:1}],{duration:300,delay:300,fill:'backwards'});
+    if(ball)orb.animate([{transform:orbFrom(orb,ball),opacity:.9},{transform:'none',opacity:1}],{duration:680,easing:'cubic-bezier(.2,.9,.25,1.06)'});
+    else orb.animate([{transform:'scale(.6)',opacity:0},{transform:'none',opacity:1}],{duration:420,easing:'ease-out'});
+    [...orb.querySelector('.orb-content').children].forEach((el,i)=>el.animate([{opacity:0,transform:'translateY(10px)'},{opacity:1,transform:'none'}],{duration:380,delay:380+i*80,easing:'ease-out',fill:'backwards'}));
+  }
+  $('memory-detail-title').focus({preventScroll:true});
+}
+async function closeHomeMemory(){
+  const viewer=$('memory-detail');if(viewer.hidden)return;
+  const token=++memoryToken,ball=document.getElementById('memory-'+openMemoryId),orb=$('memory-orb');
+  if(!matchMedia('(prefers-reduced-motion: reduce)').matches){
+    viewer.getAnimations({subtree:true}).forEach(a=>{if(a.animationName!=='orb-glow')a.cancel()});
+    const out={duration:420,easing:'cubic-bezier(.5,0,.75,0)',fill:'forwards'};
+    await Promise.all([
+      $('memory-backdrop').animate([{opacity:1},{opacity:0}],out),
+      $('close-memory').animate([{opacity:1},{opacity:0}],{duration:150,fill:'forwards'}),
+      orb.querySelector('.orb-content').animate([{opacity:1},{opacity:0}],{duration:160,fill:'forwards'}),
+      ball?orb.animate([{transform:'none'},{transform:orbFrom(orb,ball),opacity:.85}],out):orb.animate([{opacity:1},{opacity:0,transform:'scale(.6)'}],out)
+    ].map(a=>a.finished)).catch(()=>{});
+  }
+  if(token!==memoryToken)return; // another memory was opened meanwhile
+  viewer.getAnimations({subtree:true}).forEach(a=>{if(a.animationName!=='orb-glow')a.cancel()});
+  viewer.hidden=true;document.body.classList.remove('viewing-memory');openMemoryId=null;
+  ball?.classList.remove('is-open');ball?.focus({preventScroll:true});
+}
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!$('memory-detail').hidden)closeHomeMemory()});
+async function rollMemoryToShelf(memory){
+  const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const color=buttons[index].style.backgroundColor;
+  const sourceImage=$('reflection-character');const source=sourceImage.getBoundingClientRect();
+  const startX=source.left+source.width/2,startY=source.top+source.height/2;
+  let circle,character,closeMotion;
+  rollingMemoryId=reduced?null:memory.id;document.body.classList.add('transporting');
+  try{
+    if(!reduced){
+      closeMotion=$('reflection').querySelector('.reflection-content').animate([
+        {opacity:1,transform:'translateY(0)'},
+        {opacity:0,transform:'translateY(15px)'}
+      ],{duration:220,easing:'ease-out',fill:'forwards'});
+      await closeMotion.finished;
+      const diameter=Math.hypot(innerWidth,innerHeight)*2.1;
+      circle=document.createElement('div');circle.className='shrinking-memory';
+      circle.style.cssText=`position:fixed;z-index:28;pointer-events:none;border-radius:50%;left:${startX-diameter/2}px;top:${startY-diameter/2}px;width:${diameter}px;height:${diameter}px;background:${color};transform-origin:center`;
+      character=sourceImage.cloneNode();character.alt='';character.setAttribute('aria-hidden','true');
+      character.style.cssText=`position:fixed;z-index:29;pointer-events:none;object-fit:contain;left:${source.left}px;top:${source.top}px;width:${source.width}px;height:${source.height}px;transform-origin:center`;
+      document.body.append(circle,character);
+    }
+    $('memory-detail').hidden=true;openMemoryId=null;document.body.classList.remove('viewing-memory');
+    history.pushState(null,'',location.pathname+location.search);syncRoute();closeMotion?.cancel();
+    $('home-shelves').scrollTop=0;
+    const target=$('memory-'+memory.id);target.scrollIntoView({block:'nearest',inline:'nearest',behavior:'instant'});
+    $('shelf-status').textContent='A little memory, finding its place…';
+    if(!reduced){
+      const destination=target.getBoundingClientRect(),size=destination.width;
+      const tx=destination.left+size/2,ty=destination.top+size/2;
+      const diameter=parseFloat(circle.style.width),dx=tx-startX,dy=ty-startY;
+      const timing={duration:900,easing:'cubic-bezier(.65,0,.2,1)',fill:'forwards'};
+      const shrink=circle.animate([
+        {transform:'translate(0,0) scale(1)'},
+        {transform:`translate(${dx}px,${dy-6}px) scale(${size/diameter*1.08})`,offset:.9},
+        {transform:`translate(${dx}px,${dy}px) scale(${size/diameter})`}
+      ],timing);
+      const settle=character.animate([
+        {transform:'translate(0,0) scale(1)',opacity:1},
+        {transform:`translate(${dx*.8}px,${dy*.8}px) scale(.1)`,opacity:.7,offset:.72},
+        {transform:`translate(${dx}px,${dy}px) scale(.025)`,opacity:0}
+      ],timing);
+      const time=document.timeline.currentTime;if(time!==null){shrink.startTime=time;settle.startTime=time}
+      await Promise.all([shrink.finished,settle.finished]);
+      target.style.visibility='';
+      await circle.animate([{opacity:1},{opacity:0}],{duration:140,fill:'forwards'}).finished;
+    }
+  }catch(error){
+    if(!$('reflection').hidden){history.pushState(null,'',location.pathname+location.search);syncRoute()}
+  }finally{
+    closeMotion?.cancel();circle?.remove();character?.remove();rollingMemoryId=null;document.body.classList.remove('transporting');
+    drawHomeShelves();$('shelf-status').textContent='Memory stored. Tap an orb to revisit it.';$('memory-'+memory.id)?.focus({preventScroll:true});
+  }
+}
+
+</script></body></html>
