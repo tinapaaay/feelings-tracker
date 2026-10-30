@@ -32,7 +32,7 @@ body.reflecting{background:var(--reflection-color);color:var(--reflection-ink);t
 .orb-content p{font-size:clamp(15px,2.4vw,18px);line-height:1.55;margin:10px 0 0;white-space:pre-wrap;overflow-wrap:anywhere}
 .orb-thumbs{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:12px}.orb-thumbs:empty{display:none}.orb-thumbs img{width:54px;height:54px;border-radius:50%;object-fit:cover;box-shadow:0 0 0 2px #ffffffb3}
 body.viewing-memory{overflow:hidden}.memory-ball.is-open{opacity:.3}
-.rolling-memory{position:fixed;z-index:30;pointer-events:none;transform-origin:center}.copy:has(.home-memories){padding-bottom:35px}
+.rolling-memory{position:fixed;z-index:30;pointer-events:none;transform-origin:center}.shrinking-memory{overflow:hidden}.shrinking-memory .orb-skin{position:absolute;inset:0;border-radius:50%;opacity:0;background:radial-gradient(circle at 34% 27%,#ffffffd0 0,#ffffff40 10%,transparent 26%),radial-gradient(ellipse 58% 26% at 44% 40%,#ffffff70 0,transparent 70%),radial-gradient(ellipse 42% 20% at 60% 66%,#ffffff5c 0,transparent 72%),radial-gradient(ellipse 20% 38% at 26% 60%,#ffffff4d 0,transparent 75%),radial-gradient(ellipse 34% 16% at 66% 30%,color-mix(in srgb,var(--orb-color) 75%,#000) 0,transparent 75%),radial-gradient(ellipse 30% 14% at 40% 78%,color-mix(in srgb,var(--orb-color) 80%,#000) 0,transparent 75%),radial-gradient(circle at 50% 50%,color-mix(in srgb,var(--orb-color) 35%,#fff) 0,color-mix(in srgb,var(--orb-color) 80%,#fff) 45%,var(--orb-color) 78%,color-mix(in srgb,var(--orb-color) 80%,#000) 100%)}.landing-glow{position:fixed;z-index:27;pointer-events:none;border-radius:50%;opacity:0;box-shadow:0 0 18px 5px color-mix(in srgb,var(--orb-color) 85%,transparent),0 0 46px 14px color-mix(in srgb,var(--orb-color) 40%,transparent)}.copy:has(.home-memories){padding-bottom:35px}
 @media(max-width:760px){.home-memories{margin-top:26px;max-width:none}.home-shelves{max-height:260px}.intro{margin-bottom:380px}}
 
 .memory-tube{position:fixed;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none;z-index:28}.memory-tube path{fill:none;stroke-linecap:round;stroke-linejoin:round}.tube-inlet{position:fixed;z-index:29;width:78px;height:78px;border:5px solid #dfd4e9;border-radius:50%;background:#65547742;box-shadow:inset 0 6px 12px #30233f35,0 6px 18px #30233f1a;pointer-events:none}.tube-inlet:after{content:'';position:absolute;inset:5px;border:2px solid #ffffffa6;border-radius:50%}.transporting main{pointer-events:none}.transporting .rolling-memory{pointer-events:none}
@@ -315,7 +315,7 @@ async function rollMemoryToShelf(memory){
   const color=buttons[index].style.backgroundColor;
   const sourceImage=$('reflection-character');const source=sourceImage.getBoundingClientRect();
   const startX=source.left+source.width/2,startY=source.top+source.height/2;
-  let circle,character,closeMotion;
+  let circle,character,closeMotion,glow;
   rollingMemoryId=reduced?null:memory.id;document.body.classList.add('transporting');
   try{
     if(!reduced){
@@ -327,6 +327,8 @@ async function rollMemoryToShelf(memory){
       const diameter=Math.hypot(innerWidth,innerHeight)*2.1;
       circle=document.createElement('div');circle.className='shrinking-memory';
       circle.style.cssText=`position:fixed;z-index:28;pointer-events:none;border-radius:50%;left:${startX-diameter/2}px;top:${startY-diameter/2}px;width:${diameter}px;height:${diameter}px;background:${color};transform-origin:center`;
+      circle.style.setProperty('--orb-color',memoryColor(memory));
+      const skin=document.createElement('div');skin.className='orb-skin';circle.append(skin);
       character=sourceImage.cloneNode();character.alt='';character.setAttribute('aria-hidden','true');
       character.style.cssText=`position:fixed;z-index:29;pointer-events:none;object-fit:contain;left:${source.left}px;top:${source.top}px;width:${source.width}px;height:${source.height}px;transform-origin:center`;
       document.body.append(circle,character);
@@ -351,15 +353,26 @@ async function rollMemoryToShelf(memory){
         {transform:`translate(${dx*.8}px,${dy*.8}px) scale(.1)`,opacity:.7,offset:.72},
         {transform:`translate(${dx}px,${dy}px) scale(.025)`,opacity:0}
       ],timing);
-      const time=document.timeline.currentTime;if(time!==null){shrink.startTime=time;settle.startTime=time}
+      // The flat page colour turns into the glowing, swirling orb as it shrinks.
+      const orbColor=memoryColor(memory);
+      const tint=circle.animate([{backgroundColor:color},{backgroundColor:color,offset:.25},{backgroundColor:orbColor,offset:.7},{backgroundColor:orbColor}],timing);
+      const swirl=circle.firstChild.animate([{opacity:0,rotate:'0deg'},{opacity:0,offset:.3},{opacity:1,offset:.78},{opacity:1,rotate:'260deg'}],timing);
+      glow=document.createElement('div');glow.className='landing-glow';glow.style.setProperty('--orb-color',orbColor);
+      glow.style.cssText+=`;left:${destination.left}px;top:${destination.top}px;width:${size}px;height:${size}px`;document.body.append(glow);
+      const glowIn=glow.animate([{opacity:0},{opacity:0,offset:.55},{opacity:1}],timing);
+      const time=document.timeline.currentTime;if(time!==null)for(const a of [shrink,settle,tint,swirl,glowIn])a.startTime=time;
       await Promise.all([shrink.finished,settle.finished]);
       target.style.visibility='';
-      await circle.animate([{opacity:1},{opacity:0}],{duration:140,fill:'forwards'}).finished;
+      // Landing: a small bounce and one soft pulse of light.
+      target.animate([{scale:'1.14'},{scale:'.94',offset:.55},{scale:'1'}],{duration:420,easing:'ease-out'});
+      glow.animate([{opacity:1,scale:'1'},{opacity:.9,scale:'1.45',offset:.4},{opacity:0,scale:'1.1'}],{duration:620,easing:'ease-out',fill:'forwards'});
+      await circle.animate([{opacity:1},{opacity:0}],{duration:160,fill:'forwards'}).finished;
+      await new Promise(r=>setTimeout(r,420));
     }
   }catch(error){
     if(!$('reflection').hidden){history.pushState(null,'',location.pathname+location.search);syncRoute()}
   }finally{
-    closeMotion?.cancel();circle?.remove();character?.remove();rollingMemoryId=null;document.body.classList.remove('transporting');
+    closeMotion?.cancel();circle?.remove();character?.remove();glow?.remove();rollingMemoryId=null;document.body.classList.remove('transporting');
     drawHomeShelves();$('shelf-status').textContent='Memory stored. Tap an orb to revisit it.';$('memory-'+memory.id)?.focus({preventScroll:true});
   }
 }
