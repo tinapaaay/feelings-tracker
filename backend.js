@@ -52,6 +52,8 @@ const journalStore = (() => {
     return data;
   }
   function updateAccountUI() {
+    // Without the server (e.g. GitHub Pages or a local file) this is a guest-only journal.
+    el("account-trigger").hidden = !online && !user;
     el("account-trigger").textContent = sessionExpired
       ? "Sign in again"
       : user
@@ -73,7 +75,7 @@ const journalStore = (() => {
     el("import-browser").hidden = !canImport;
     el("import-help").hidden = !canImport;
     el("import-browser").textContent =
-      `Import ${localMemories().length} browser memories`;
+      `Import ${localMemories().length} browser ${localMemories().length === 1 ? "memory" : "memories"}`;
   }
   async function loadAllMemories() {
     const result = [];
@@ -131,7 +133,7 @@ const journalStore = (() => {
     } catch (error) {
       el("shelf-status").textContent = user
         ? "Could not load your account journal. Reload to try again; your memories are still on the server."
-        : "Account service unavailable. Your browser journal is still available.";
+        : "";
       updateAccountUI();
     }
   }
