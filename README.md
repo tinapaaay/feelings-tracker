@@ -104,3 +104,7 @@ npm test
 Integration tests cover authentication, private memory/photo access, CSRF/origin checks, image validation, editing, import rollback and duplicate handling, pagination, emotion insights, portable backups, restart persistence, deletion, logout, and rate limiting. CI runs on Node 22 and 24.
 
 Character artwork belongs to Disney/Pixar and is used here for a personal, non-commercial prototype.
+
+## Development guide
+
+See [Development and maintenance](docs/DEVELOPMENT.md) for setup, source files, implementation limits, editing instructions, verification, and deployment.
