@@ -4,6 +4,11 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>Little feelings</title>
+    <meta name="description" content="A little feelings check-in: pick how you feel, write the story, and keep it as a glowing memory orb on your shelf." />
+    <meta name="theme-color" content="#fffde7" />
+    <meta property="og:title" content="Little feelings" />
+    <meta property="og:description" content="Pick how you feel, write the story, and keep it as a glowing memory orb." />
+    <meta property="og:type" content="website" />
     <link
       rel="icon"
       href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%2216%22%20r%3D%225.2%22%20fill%3D%22%23f4d447%22/%3E%3Ccircle%20cx%3D%2216.0%22%20cy%3D%225.7%22%20r%3D%225.2%22%20fill%3D%22%23ef7b13%22/%3E%3Ccircle%20cx%3D%2224.9%22%20cy%3D%2210.9%22%20r%3D%225.2%22%20fill%3D%22%23b98bd1%22/%3E%3Ccircle%20cx%3D%2224.9%22%20cy%3D%2221.1%22%20r%3D%225.2%22%20fill%3D%22%23eb7aaa%22/%3E%3Ccircle%20cx%3D%2216.0%22%20cy%3D%2226.3%22%20r%3D%225.2%22%20fill%3D%22%23ee2627%22/%3E%3Ccircle%20cx%3D%227.1%22%20cy%3D%2221.1%22%20r%3D%225.2%22%20fill%3D%22%2339783a%22/%3E%3Ccircle%20cx%3D%227.1%22%20cy%3D%2210.8%22%20r%3D%225.2%22%20fill%3D%22%23292582%22/%3E%3C/svg%3E"
@@ -360,6 +365,9 @@
         *::after {
           transition: none !important;
           scroll-behavior: auto !important;
+        }
+        .memory-orb {
+          animation: none !important;
         }
       }
 
@@ -1241,6 +1249,44 @@
       }
       .account-dialog .danger {
         color: #a52b38;
+      }
+      .confirm-dialog {
+        width: min(380px, calc(100% - 32px));
+        padding: 28px;
+      }
+      .confirm-dialog h2 {
+        font-size: 24px;
+        margin-right: 0;
+      }
+      .confirm-dialog p {
+        color: #625b64;
+        margin: 0 0 22px;
+      }
+      .confirm-actions {
+        display: flex;
+        justify-content: flex-end;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+      .confirm-actions button {
+        border: 0;
+        border-radius: 12px;
+        padding: 12px 18px;
+        font-weight: 600;
+      }
+      .confirm-cancel {
+        background: #30233f12;
+        color: #30233f;
+      }
+      .confirm-cancel:hover {
+        background: #30233f1f;
+      }
+      .confirm-ok {
+        background: #a52b38;
+        color: #fff;
+      }
+      .confirm-ok:hover {
+        background: #8c2230;
       }
       .account-dialog #account-status {
         min-height: 22px;
@@ -2267,6 +2313,7 @@
         });
         viewer.hidden = false;
         document.body.classList.add("viewing-memory");
+        setPageInert(true);
         ball?.classList.add("is-open");
         if (!reduced) {
           ball?.animate(
@@ -2319,6 +2366,9 @@
           );
         }
         $("memory-detail-title").focus({ preventScroll: true });
+      }
+      function setPageInert(on) {
+        for (const el of document.querySelectorAll("header, main")) el.inert = on;
       }
       async function closeHomeMemory() {
         const viewer = $("memory-detail");
@@ -2373,12 +2423,18 @@
         viewer.hidden = true;
         $("memory-actions").hidden = true;
         document.body.classList.remove("viewing-memory");
+        setPageInert(false);
         openMemoryId = null;
         ball?.classList.remove("is-open");
         ball?.focus({ preventScroll: true });
       }
       document.addEventListener("keydown", (e) => {
-        if (e.key === "Escape" && !$("memory-detail").hidden) closeHomeMemory();
+        if (
+          e.key === "Escape" &&
+          !$("memory-detail").hidden &&
+          !document.querySelector("dialog[open]")
+        )
+          closeHomeMemory();
       });
       async function rollMemoryToShelf(memory) {
         const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -2419,6 +2475,7 @@
           $("memory-detail").hidden = true;
           openMemoryId = null;
           document.body.classList.remove("viewing-memory");
+          setPageInert(false);
           history.pushState(null, "", location.pathname + location.search);
           syncRoute();
           closeMotion?.cancel();
@@ -2618,6 +2675,20 @@
       ><button id="delete-memory" type="button">Delete memory</button>
       <p id="memory-action-status" role="status"></p>
     </div>
+    <dialog
+      id="confirm-dialog"
+      class="account-dialog confirm-dialog"
+      aria-labelledby="confirm-title"
+      aria-describedby="confirm-message"
+    >
+      <h2 id="confirm-title"></h2>
+      <p id="confirm-message"></p>
+      <div class="confirm-actions">
+        <button type="button" class="confirm-cancel" id="confirm-cancel">
+          Cancel</button
+        ><button type="button" class="confirm-ok" id="confirm-ok"></button>
+      </div>
+    </dialog>
     <script src="backend.js" defer></script>
   </body>
 </html>

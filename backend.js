@@ -278,12 +278,43 @@ const journalStore = (() => {
         "That file is not a valid JSON backup.";
     }
   };
+  // In-app "are you sure?" dialog. Cancel is focused first so Enter never deletes by accident.
+  function askConfirm(title, message, confirmLabel) {
+    const dialog = el("confirm-dialog");
+    el("confirm-title").textContent = title;
+    el("confirm-message").textContent = message;
+    el("confirm-ok").textContent = confirmLabel;
+    return new Promise((resolve) => {
+      const done = (value) => {
+        dialog.removeEventListener("close", onClose);
+        if (dialog.open) dialog.close();
+        resolve(value);
+      };
+      const onClose = () => done(false);
+      el("confirm-ok").onclick = () => done(true);
+      el("confirm-cancel").onclick = () => done(false);
+      dialog.onclick = (e) => {
+        const r = dialog.getBoundingClientRect();
+        const outside =
+          e.clientX < r.left ||
+          e.clientX > r.right ||
+          e.clientY < r.top ||
+          e.clientY > r.bottom;
+        if (e.target === dialog && outside) done(false);
+      };
+      dialog.addEventListener("close", onClose);
+      dialog.showModal();
+      el("confirm-cancel").focus();
+    });
+  }
   el("account-delete").onclick = async () => {
     if (
       busy ||
-      !confirm(
-        "Permanently delete your account, memories, and photos? Download a backup first if you want to keep them.",
-      )
+      !(await askConfirm(
+        "Delete your account?",
+        "This permanently removes your account, memories, and photos. Download a backup first if you want to keep them.",
+        "Delete account",
+      ))
     )
       return;
     busy = true;
@@ -334,7 +365,11 @@ const journalStore = (() => {
     if (
       busy ||
       !id ||
-      !confirm("Delete this memory and its photos? This cannot be undone.")
+      !(await askConfirm(
+        "Delete this memory?",
+        "Its note and photos will be removed. This can’t be undone.",
+        "Delete memory",
+      ))
     )
       return;
     busy = true;
